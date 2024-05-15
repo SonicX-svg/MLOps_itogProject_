@@ -10,10 +10,9 @@ pipeline {
                 // Run shell script - привет
                 sh "/var/lib/jenkins/workspace/eee/hello_there.sh"
                 sh 'pwd'
-                sh 'docker build Dockerfile .'
-
+                
                 sh """
-                  docker build  dockerfile 
+                  docker build -k dockerfile .
                 """
 
                 sh """
