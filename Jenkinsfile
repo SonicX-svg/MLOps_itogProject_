@@ -1,60 +1,26 @@
-properties([pipelineTriggers([githubPush()])])
+#!/usr/bin/env groovy
 
 pipeline {
-    environment {
-        // name of the image without tag
-        dockerRepo = "varungujarathi9/jenkins-hello-world"
-        dockerCredentials = 'docker_hub'
-        dockerImageVersioned = ""
-        dockerImageLatest = ""
-    }
 
-    agent any
+    agent {
+        docker {
+            image 'node'
+            args '-u root'
+        }
+    }
 
     stages {
-        /* checkout repo */
-        stage('Checkout SCM') {
+        stage('Build') {
             steps {
-                checkout([
-                 $class: 'GitSCM',
-                 branches: [[name: 'master']],
-                 userRemoteConfigs: [[
-                    url: 'https://www.github.com/varungujarathi9/Jenkins-Hello-World.git',
-                    credentialsId: '',
-                 ]]
-                ])
+                echo 'Building...'
+                sh 'npm install'
             }
         }
-        stage("Building docker image"){
-            steps{
-                script{
-                    dockerImageVersioned = docker.build dockerRepo + ":$BUILD_NUMBER"
-                    dockerImageLatest = docker.build dockerRepo + ":latest"
-                }
-            }
-        }
-        stage("Pushing image to registry"){
-            steps{
-                script{
-                    // if you want to use custom registry, use the first argument, which is blank in this case
-                    docker.withRegistry( '', dockerCredentials){
-                        dockerImageVersioned.push()
-                        dockerImageLatest.push()
-                    }
-                }
-            }
-        }
-        stage('Cleaning up') {
+        stage('Test') {
             steps {
-                sh "docker rmi $dockerRepo:$BUILD_NUMBER"
+                echo 'Testing...'
+                sh 'npm test'
             }
         }
     }
-
-    /* Cleanup workspace */
-    post {
-       always {
-           deleteDir()
-       }
-   }
 }
