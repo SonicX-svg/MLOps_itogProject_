@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git url: 'https://github.com/SonicX-svg/MLOps_itogProject_/blob/first_experiment/Jenkinsfile.git', branch: 'main'
+                git url: 'https://github.com/SonicX-svg/MLOps_itogProject_.git', branch: 'first_experiment'
                 // Change file permisson
                 sh "chmod +xrw -R /var/lib/jenkins/workspace/eee"
                 // Run shell script - привет
