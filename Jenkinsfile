@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-               
+                sh 'whoami'
                 // Get some code from a GitHub repository
                 git url: 'https://github.com/SonicX-svg/MLOps_itogProject_.git', branch: 'first_experiment'
                 // Change file permisson
