@@ -1,3 +1,5 @@
-FROM node:20.11.1-alpine3.19
+FROM python:3.7-alpine
 
-RUN apk add -U subversion
+COPY hello_there.py /
+
+CMD [ "python", "hello_there.py"]
