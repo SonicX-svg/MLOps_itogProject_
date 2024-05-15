@@ -12,11 +12,11 @@ pipeline {
                 sh 'docker build Dockerfile .'
 
                 sh """
-                  docker build Dockerfile .
+                  docker build dockerfile .
                 """
 
                 sh """
-                  docker run --rm Dockerfile
+                  docker run --rm dockerfile
                 """
       }
     }
