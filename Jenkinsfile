@@ -12,7 +12,7 @@ pipeline {
                 sh 'docker build Dockerfile .'
 
                 sh """
-                  docker build -t dockerfile .  
+                  docker build  dockerfile 
                 """
 
                 sh """
