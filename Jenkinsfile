@@ -27,7 +27,7 @@ pipeline {
                    sh 'python test_model.py'}
         
       }
-      stage('Tests') {
-  }
+      //stage('Tests') {
+ // }
 }
 }
