@@ -10,13 +10,11 @@ pipeline {
                 // Run shell script - привет
                 sh "/var/lib/jenkins/workspace/eee/hello_there.sh"
                 sh 'docker build Dockerfile .'
-            }
-           steps {
+
                 sh """
                   docker build Dockerfile .
                 """
-                }
-          steps {
+
                 sh """
                   docker run --rm Dockerfile
                 """
@@ -24,9 +22,9 @@ pipeline {
     }
       stage('Create_model') {
                   steps {
-                     sh 'python eda.py'}
-                    steps { sh 'python model_creation.py'}
-                  steps {   sh 'python test_model.py'}
+                     sh 'python eda.py'
+                    sh 'python model_creation.py'
+                   sh 'python test_model.py'}
         
       }
       stage('Tests') {
