@@ -1,25 +1,9 @@
-#!/usr/bin/env groovy
-
 pipeline {
-
-    agent {
-        docker {
-            image 'node'
-            args '-u root'
-        }
-    }
-
+    agent any
     stages {
-        stage('Build') {
+        stage('hello') {
             steps {
-                echo 'Building...'
-                sh 'npm install'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-                sh 'npm test'
+                sh 'echo Hello Jenkins!'
             }
         }
     }
