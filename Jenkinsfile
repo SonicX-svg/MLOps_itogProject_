@@ -9,10 +9,10 @@ pipeline {
                 sh "chmod +xrw -R /var/lib/jenkins/workspace/eee"
                 // Run shell script - привет
                 sh "/var/lib/jenkins/workspace/eee/hello_there.sh"
-                sh 'pwd'
+                sh 'whoami'
                 
                 sh """
-                  docker build -k dockerfile .
+                  docker build  dockerfile 
                 """
 
                 sh """
