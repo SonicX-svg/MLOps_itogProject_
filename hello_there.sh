@@ -1,1 +1,2 @@
-echo 'HELLO!'
+#!/bin/sh
+echo "HELLO WORLD"
