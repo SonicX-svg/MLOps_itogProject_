@@ -3,13 +3,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh 'cd /home'
                 // Get some code from a GitHub repository
                 git url: 'https://github.com/SonicX-svg/MLOps_itogProject_.git', branch: 'first_experiment'
                 // Change file permisson
                 sh "chmod +xrw -R /var/lib/jenkins/workspace/eee"
                 // Run shell script - привет
                 sh "/var/lib/jenkins/workspace/eee/hello_there.sh"
-                sh 'su - sonikx'
+                
                 
                 sh """
                   docker build  dockerfile 
