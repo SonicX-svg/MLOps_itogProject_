@@ -14,20 +14,7 @@ pipeline {
                 git  'https://github.com/SonicX/MLOps_itogProject_'
             }
         }
-        
-        stage('Build') {
-            steps {
-                sh 'npm install'
-                sh 'npm run bowerInstall'
-            }
-        }
-        
-        stage('Test') {
-            steps {
-                sh 'npm test'
-            }
-        }
-        
+     
         stage('Building image') {
             steps{
                 script {
