@@ -8,10 +8,10 @@ pipeline {
     agent any
     
     stages {
-        
+       // branch: 'first_experiment', 
         stage('Cloning Git') {
             steps {
-                git branch: 'first_experiment', 
+                git 
                     url: 'https://github.com/SonicX/MLOps_itogProject_'
             }
         }
