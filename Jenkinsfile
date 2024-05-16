@@ -11,17 +11,17 @@ pipeline {
                 //sh 'sudo usermod -aG docker jenkins'
                 sh 'echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1'
                 // Get some code from a GitHub repository
-                git url: 'https://github.com/SonicX-svg/MLOps_itogProject_.git', branch: 'first_experiment'
-         stages {
+                git url: 'https://github.com/SonicX-svg/MLOps_itogProject_.git', branch: 'first_experiment'}}
+         stage {
             steps { 
                 script { dockerImage = docker.build registry + ":$BUILD_NUMBER"}}}
-         stages {
+         stage {
             steps { 
                 script { docker.withRegistry( '', registryCredential ) { 
-                        dockerImage.push() }}}
-         stages {
+                        dockerImage.push() }}}}
+         stage {
             steps { 
-                sh "docker rmi $registry:$BUILD_NUMBER" }}
+                sh "docker rmi $registry:$BUILD_NUMBER" 
              
                 sh 'dockerImage = docker.build registry'
                 // Change file permisson
