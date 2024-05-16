@@ -10,6 +10,7 @@ pipeline {
                 // Change file permisson
               //  sh "chmod +xrw -R /var/lib/jenkins/workspace/MLOps2"
                 // Run shell script - привет
+                sh 'pwd'
                 sh "./hello_there.sh"
                 
                 
