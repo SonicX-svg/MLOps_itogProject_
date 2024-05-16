@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'whoami'
+                sh 'sudo usermod -aG docker jenkins'
                 sh 'echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1'
                 // Get some code from a GitHub repository
                 git url: 'https://github.com/SonicX-svg/MLOps_itogProject_.git', branch: 'first_experiment'
