@@ -13,7 +13,7 @@ pipeline {
         
         stage('Cloning Git') {
             steps {
-                git url: 'https://github.com/SonicX-svg/MLOps_itogProject_.git', branch: 'first_experiment'}}
+                git url: 'https://github.com/SonicX-svg/MLOps_itogProject_.git', branch: 'first_experiment'
             }
         }
         
@@ -48,3 +48,4 @@ pipeline {
         }
     }
 }
+
