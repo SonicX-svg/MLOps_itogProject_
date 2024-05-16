@@ -11,7 +11,7 @@ pipeline {
         
         stage('Cloning Git') {
             steps {
-                git 'https://github.com/SonicX-svg/MLOps_itogProject_/tree/first_experiment.git'
+                git 'https://github.com/SonicX-svg/MLOps_itogProject_.git'
             }
         }
         
