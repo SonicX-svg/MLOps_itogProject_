@@ -1,4 +1,9 @@
 pipeline {
+    environment { 
+        registry = "sonikxsvg/ci_cd" 
+        registryCredential = 'dockerhub_id' 
+        dockerImage = '' 
+              }
     agent any
     stages {
         stage('Build') {
@@ -7,6 +12,18 @@ pipeline {
                 sh 'echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1'
                 // Get some code from a GitHub repository
                 git url: 'https://github.com/SonicX-svg/MLOps_itogProject_.git', branch: 'first_experiment'
+         stages {
+            steps { 
+                script { dockerImage = docker.build registry + ":$BUILD_NUMBER"}}}
+         stages {
+            steps { 
+                script { docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() }}}
+         stages {
+            steps { 
+                sh "docker rmi $registry:$BUILD_NUMBER" }}
+             
+                sh 'dockerImage = docker.build registry'
                 // Change file permisson
                 sh "chmod +xrw -R /var/lib/jenkins/workspace/MLOps2"
                 // Run shell script - привет
