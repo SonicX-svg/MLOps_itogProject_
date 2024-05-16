@@ -8,9 +8,9 @@ pipeline {
                 // Get some code from a GitHub repository
                 git url: 'https://github.com/SonicX-svg/MLOps_itogProject_.git', branch: 'first_experiment'
                 // Change file permisson
-                sh "chmod +xrw -R /var/lib/jenkins/workspace/eee"
+                sh "chmod +xrw -R /var/lib/jenkins/workspace/MLOps2"
                 // Run shell script - привет
-                sh "/var/lib/jenkins/workspace/eee/hello_there.sh"
+                sh "/var/lib/jenkins/workspace/MLOps2/hello_there.sh"
                 
                 
                 sh """
