@@ -12,14 +12,14 @@ pipeline {
                 sh 'echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1'
                 // Get some code from a GitHub repository
                 git url: 'https://github.com/SonicX-svg/MLOps_itogProject_.git', branch: 'first_experiment'}}
-         stage {
+    stage {
             steps { 
                 script { dockerImage = docker.build registry + ":$BUILD_NUMBER"}}}
-         stage {
+    stage {
             steps { 
                 script { docker.withRegistry( '', registryCredential ) { 
                         dockerImage.push() }}}}
-         stage {
+    stage {
             steps { 
                 sh "docker rmi $registry:$BUILD_NUMBER" 
              
