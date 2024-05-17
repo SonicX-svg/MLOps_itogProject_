@@ -1,7 +1,7 @@
 from sklearn.model_selection import train_test_split
 import pandas as pd
 import numpy as np
-df_train = pd.read_csv('train.csv')
+df_train = pd.read_csv('data/model/train.csv')
 
 y = df_train[['target']]
 X = df_train.drop('target', axis=1)
@@ -18,5 +18,5 @@ neigh.fit(X_train, y_train.values.ravel())
 
 
 import pickle
-with open('neigh_model.pkl','wb') as f:
+with open('data/model_knn/neigh_model.pkl','wb') as f:
     pickle.dump(neigh,f)
