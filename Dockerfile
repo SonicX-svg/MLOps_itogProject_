@@ -1,4 +1,4 @@
-FROM ubuntu:24.04           // python:3.7-alpine
+FROM ubuntu:24.04           
 
 # Install required packages
 RUN apt-get update \
