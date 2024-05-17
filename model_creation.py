@@ -13,7 +13,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y,
                                                     random_state = 42)
 
 from sklearn.neighbors import KNeighborsClassifier
-neigh = KNeighborsClassifier(n_neighbors=2)
+from sklearn.linear_model import LogisticRegression
+neigh = LogisticRegression(random_state=0)
 neigh.fit(X_train, y_train.values.ravel())
 
 
