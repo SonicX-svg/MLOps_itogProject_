@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM ubuntu            // python:3.7-alpine
 
 # Install required packages
 RUN apt-get update \
