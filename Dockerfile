@@ -1,4 +1,4 @@
-FROM ubuntu:24.04           
+FROM python:3.10.5-slim-buster
 
 
  
