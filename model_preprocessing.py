@@ -92,5 +92,5 @@ new_df
 from sklearn.model_selection import train_test_split
 train, test = train_test_split(new_df, test_size= 0.2 , random_state= 0 )
 
-train.to_csv('train.csv', index=False)
-test.to_csv('test.csv', index=False)
+train.to_csv('data/model/train.csv', index=False)
+test.to_csv('data/model/test.csv', index=False)

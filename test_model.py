@@ -8,7 +8,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import classification_report, confusion_matrix 
 
 # load
-with open('neigh_model.pkl', 'rb') as f:
+with open('data/model_knn/neigh_model.pkl', 'rb') as f:
     neigh_model = pickle.load(f)
     
 y_pred = neigh_model.predict(X_test)
