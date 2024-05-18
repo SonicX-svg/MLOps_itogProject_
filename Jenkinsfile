@@ -4,7 +4,7 @@ agent { dockerfile true }
         stage('Runsh') {
             steps {
                sh 'pwd'
-                sh  'bash hello_there.sh'
+                sh  'go.sh'
             }
         }
         stage('Run_tests') {
