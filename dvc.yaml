@@ -1,0 +1,25 @@
+stages:
+  preparation:
+    cmd: python3 model_preprocessing.py
+    deps:
+    - data/breast_cancer.csv
+    - model_preprocessing.py
+    outs:
+    - data/model/test.csv
+    - data/model/train.csv
+  create_model:
+    cmd: python model_creation.py
+    deps:
+    - data/model/train.csv
+    - model_creation.py
+    outs:
+    - data/model_knn/neigh_model.pkl
+  evaluate:
+    cmd: python test_model.py
+    deps:
+    - data/model/test.csv
+    - data/model_knn/neigh_model.pkl
+    - test_model.py
+    metrics:
+    - data/model_knn/metrics/accuracy.json:
+        cache: false
