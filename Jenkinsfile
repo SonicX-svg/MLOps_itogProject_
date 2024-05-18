@@ -7,5 +7,10 @@ agent { dockerfile true }
                 sh  'bash hello_there.sh'
             }
         }
+        stage('Run_tests') {
+            steps {
+                sh  'python tests/tests.py'
+            }
+        }      
     }
 }
