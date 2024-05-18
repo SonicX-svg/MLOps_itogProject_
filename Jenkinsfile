@@ -9,6 +9,7 @@ agent { dockerfile true }
         }
         stage('Run_tests') {
             steps {
+                sh  'echo start tests'
                 sh  'python tests/tests.py'
             }
         }      
