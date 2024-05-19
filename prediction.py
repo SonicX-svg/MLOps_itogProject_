@@ -1,17 +1,22 @@
-import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
 from model_creation import X_test, y_test
-from sklearn import metrics
 import pickle
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import classification_report, confusion_matrix 
+from sklearn.metrics import classification_report, confusion_matrix
+import os
 
 # load
-with open('data/model_knn/neigh_model.pkl', 'rb') as f:
-    neigh_model = pickle.load(f)
-model_accuracy = accuracy_score(y_true, y_pred)     
-y_pred = neigh_model.predict(X_test)
-print(confusion_matrix(y_test, y_pred)) 
-print(classification_report(y_test, y_pred))
+try:
+    if os.path.exists('MLOps_itogProject_/data/model_knn') is True:
+        with open('MLOps_itogProject_/data/model_knn/neigh_model.pkl', 'rb') as f:
+            neigh_model = pickle.load(f)
+    else:
+        os.mkdir('MLOps_itogProject_/data/model_knn')
+except:
+    print('файл не существует')
 
+y_pred = neigh_model.predict(X_test)
+
+#Print the Confusion Matrix and slice it into four pieces
+print("Confusion matrix: \n",confusion_matrix(y_test, y_pred))
+
+#Print a classification report.
+print("Classification report: \n", classification_report(y_test, y_pred))

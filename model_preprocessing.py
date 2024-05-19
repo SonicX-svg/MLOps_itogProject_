@@ -8,11 +8,12 @@ Original file is located at
 
 # load_breast_cancer - набор данных о гистологических параметрах опухолей молочной железы. Классификация.
 """
-
-
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-
+import os
 
 
 
@@ -25,7 +26,7 @@ df = pd.read_csv(r'MLOps_itogProject_/data/breast_cancer.csv')
 ## Изучим тип переменных
 """
 
-df.info() # видим, что все признаки колличественныеcancer_df.isnull().sum()cancer_df.isnull().sum()
+# df.info() # видим, что все признаки колличественныеcancer_df.isnull().sum()cancer_df.isnull().sum()
 
 df.describe().round(2) #видим разные масштабы данных
 
@@ -35,7 +36,7 @@ df.nunique() # теперь точно видим, что ккатегориал
 
 df_data = df.drop('target', axis= 1).copy()
 # импортируем необходимый класс из модуля preprocessing библиотеки sklearn
-from sklearn.preprocessing import StandardScaler
+
 
 # создадим объект этого класса
 scaler = StandardScaler()
@@ -60,7 +61,7 @@ data['diff'] = abs(data.iloc[:, 0] - data.iloc[:, 1])
 # остается отсортировать наш датафрейм по столбцу разницы средних в нисходящем порядке
 data = data.sort_values(by = ['diff'], ascending = False)
 
-import matplotlib.pyplot as plt
+
 # задаем количество интервалов
 bins = 17
 
@@ -86,11 +87,23 @@ y = list(cancer_df_scaled['target'])
 #df = X
 #df['target'] = y
 
-new_df = X.assign(target=y) 
-new_df 
+new_df = X.assign(target=y)
 
-from sklearn.model_selection import train_test_split
+
 train, test = train_test_split(new_df, test_size= 0.2 , random_state= 0 )
 
-train.to_csv('MLOps_itogProject_/data/model/train.csv', index=False)
-test.to_csv('MLOps_itogProject_/data/model/test.csv', index=False)
+
+try:
+    # Сохраняем обучающую и тестовую выборки 
+    # создать папку вывода MLOps_itogProject_/data/model
+    if os.path.exists('MLOps_itogProject_/data/model') is True:
+        train.to_csv('MLOps_itogProject_/data/model/train.csv', index=False)
+        test.to_csv('MLOps_itogProject_/data/model/test.csv', index=False)
+    else:
+        os.mkdir('MLOps_itogProject_/data/model')
+        train.to_csv('MLOps_itogProject_/data/model/train.csv', index=False)
+        test.to_csv('MLOps_itogProject_/data/model/test.csv', index=False)
+except:
+    print("Файлы не сохранены", '\n')
+    
+print("Файлы для обучения модели сохранены", '\n')
