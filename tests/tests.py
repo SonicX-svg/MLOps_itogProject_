@@ -2,6 +2,7 @@
 import pytest
 import os
 import sys
+from pathlib import Path
 parent_dir = Path(os.path.dirname(__file__)).parent
 sys.path.append(parent_dir)
 from model_preprocessing import df
