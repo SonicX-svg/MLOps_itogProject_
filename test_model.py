@@ -10,9 +10,11 @@ from sklearn.metrics import classification_report, confusion_matrix , accuracy_s
 # load
 with open('neigh_model.pkl', 'rb') as f:
     neigh_model = pickle.load(f)
+    
+y_pred = neigh_model.predict(X_test)
 
 model_accuracy = accuracy_score(y_test, y_pred)
-y_pred = neigh_model.predict(X_test)
+
 print(confusion_matrix(y_test, y_pred)) 
 print(classification_report(y_test, y_pred))
 
