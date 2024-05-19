@@ -3,9 +3,9 @@ import pytest
 import os
 import sys
 from pathlib import Path
-os.chdir("..")
+sys.path.append('..')
 print('os.path.abspath(os.curdir)', os.path.abspath(os.curdir))
-print('sys.path', sys.path)
+
 
 from model_preprocessing import df
 from test_model import model_accuracy
