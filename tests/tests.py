@@ -4,6 +4,7 @@ import os
 import sys
 from pathlib import Path
 sys.path.append('..')
+зкште(sys.path)
 print('os.path.abspath(os.curdir)', os.path.abspath(os.curdir))
 
 
