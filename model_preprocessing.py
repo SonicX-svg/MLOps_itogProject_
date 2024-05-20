@@ -9,18 +9,16 @@ Original file is located at
 # load_breast_cancer - набор данных о гистологических параметрах опухолей молочной железы. Классификация.
 """
 
-from sklearn import datasets
+
 import pandas as pd
 import numpy as np
 
-data = datasets.load_breast_cancer() # объект Bunch, который в свою очередь, представляет собой подкласс питоновского словаря
-type(data)
 
-data.DESCR
 
-df = pd.DataFrame(data.data, columns=data.feature_names)
 
-df['target'] = data.target
+
+df = pd.read_csv('data/breast_cancer.csv')
+
 
 """Изучим тип переменных
 
@@ -35,7 +33,7 @@ df.isnull().sum() # пропусков нет
 
 df.nunique() # теперь точно видим, что ккатегориальная только целевая
 
-df_data = pd.DataFrame(data.data, columns=data.feature_names)
+df_data = df.drop('target', axis= 1).copy()
 # импортируем необходимый класс из модуля preprocessing библиотеки sklearn
 from sklearn.preprocessing import StandardScaler
 
@@ -46,10 +44,10 @@ scaler = StandardScaler()
 scaled_data = scaler.fit_transform(df_data)
 
 # преобразуем scaled_data обратно в датафрейм
-cancer_df_scaled = pd.DataFrame(scaled_data, columns = data.feature_names)
+cancer_df_scaled = pd.DataFrame(scaled_data, columns = df_data.columns)
 
 # вновь добавим целевую переменную
-cancer_df_scaled['target'] = data.target
+cancer_df_scaled['target'] = df['target'].copy()
 
 # посмотрим на результат (только два первых значения)
 cancer_df_scaled.head(2)
@@ -94,5 +92,5 @@ new_df
 from sklearn.model_selection import train_test_split
 train, test = train_test_split(new_df, test_size= 0.2 , random_state= 0 )
 
-train.to_csv('train.csv', index=False)
-test.to_csv('test.csv', index=False)
+train.to_csv('data/model/train.csv', index=False)
+test.to_csv('data/model/test.csv', index=False)
