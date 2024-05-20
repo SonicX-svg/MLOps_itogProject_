@@ -18,7 +18,7 @@ print(confusion_matrix(y_test, y_pred))
 print(classification_report(y_test, y_pred))
 
 # Set our tracking server uri for logging
-mlflow.set_tracking_uri(uri="http://127.0.0.1:5005")
+mlflow.set_tracking_uri(uri="https://public-owls-fold.loca.lt/#/experiments/0?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D")
 
 # Create a new MLflow Experiment
 mlflow.set_experiment("MLflow Quickstart")
