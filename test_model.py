@@ -10,15 +10,15 @@ import mlflow
 from mlflow.models import infer_signature
 
 # load
-with open('data/model_knn/neigh_model.pkl', 'rb') as f:
+with open("data/model_knn/neigh_model.pkl", "rb") as f:
     neigh_model = pickle.load(f)
 y_pred = neigh_model.predict(X_test)
-model_accuracy = accuracy_score(y_test, y_pred)     
-print(confusion_matrix(y_test, y_pred)) 
+model_accuracy = accuracy_score(y_test, y_pred)
+print(confusion_matrix(y_test, y_pred))
 print(classification_report(y_test, y_pred))
 
 # Set our tracking server uri for logging
-mlflow.set_tracking_uri(uri="https://public-owls-fold.loca.lt/#/experiments/0?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D")
+mlflow.set_tracking_uri(uri="http://127.0.0.1:5005")
 
 # Create a new MLflow Experiment
 mlflow.set_experiment("MLflow Quickstart")
@@ -45,8 +45,7 @@ with mlflow.start_run():
         input_example=X_train,
         registered_model_name="tracking-quickstart",
     )
-    
+
 loaded_model = mlflow.pyfunc.load_model(model_info.model_uri)
 
 predictions = loaded_model.predict(X_test)
-
