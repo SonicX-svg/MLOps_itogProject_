@@ -6,13 +6,13 @@ agent { dockerfile true }
                sh 'echo hello'
                 sh  'bash hello_there.sh'
             }}
-         stage('Run formater') {
+         stage('Run flake8 linter') {
            steps {
                sh '''
-                   black model_creation.py
-                   black model_preprocessing.py
-                   black test_model.py
-                   balck tests/tests.py
+                   flake8 model_creation.py
+                   flake8 model_preprocessing.py
+                   flake8 test_model.py
+                   flake8 tests/tests.py
                '''
            }}
          stage('Run tests') {
